@@ -255,3 +255,35 @@ body {
 	width: 100%;
 	text-align: center;
 }
+/* ====== PAUSE: blinkende rød ramme ====== */
+#recordingRing.paused {
+  /* fallback (blinker hele rammen) */
+  animation: ringBlink 1s step-start infinite;
+}
+
+/* Blink specifikt på de fire sider (sikrer blink selv hvis parent ikke arver) */
+#recordingRing.paused #left,
+#recordingRing.paused #right,
+#recordingRing.paused #top,
+#recordingRing.paused #bottom {
+  animation: ringBlink 1s step-start infinite;
+}
+
+@keyframes ringBlink {
+  50% { opacity: 0; }
+}
+
+/* ====== PAUSE: ikon i midten ====== */
+.pause-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  font-weight: 900;
+  color: red;
+  text-shadow: 0 0 18px rgba(255, 0, 0, .6);
+  z-index: 9999;
+  display: none;          /* vises kun når paused */
+  pointer-events: none;
+}
